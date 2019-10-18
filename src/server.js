@@ -1,19 +1,12 @@
 const express = require("express");
+const { ApolloServer, gql } = require("apollo-server-express");
+const applyMiddleware = require("./config/middleware");
 const mockRoutes = require("./mock");
 
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const morgan = require("morgan");
-const locus = require("locus");
-
-const app = express();
+let app = express();
 const port = process.env.PORT || 9000;
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
-app.use(morgan("tiny"));
-
+app = applyMiddleware(app);
 app.use("/mock", mockRoutes);
 
 app.use((err, req, res, next) => {
