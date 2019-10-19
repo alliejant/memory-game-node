@@ -1,5 +1,6 @@
 const express = require("express");
 const { ApolloServer, gql } = require("apollo-server-express");
+require("./config/mongoose");
 const applyMiddleware = require("./config/middleware");
 const mockRoutes = require("./mock");
 
